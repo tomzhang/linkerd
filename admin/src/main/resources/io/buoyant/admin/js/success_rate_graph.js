@@ -16,14 +16,12 @@ var SuccessRateGraph = (function() {
     }
   }
 
-  function getChartWidthFn($chartEl) {
-    return function() {
-      var serverWidth = $(".router-server").width();
-      if (serverWidth < defaultWidth) {
-        return serverWidth;
-      }
-      return serverWidth - colMd6Width;
+  function chartWidthFn($chartEl) {
+    var serverWidth = $(".router-server").width();
+    if (serverWidth < defaultWidth) {
+      return serverWidth;
     }
+    return serverWidth - colMd6Width;
   }
 
   function yRangeFunction(range) {
@@ -66,9 +64,9 @@ var SuccessRateGraph = (function() {
 
   return function($chartEl, clientColor) {
     var chartLegend = createChartLegend(clientColor);
-    var chart = initializeChart($chartEl, timeseriesParams, getChartWidthFn($chartEl));
+    var chart = initializeChart($chartEl, timeseriesParamsFn, chartWidthFn);
 
-    function timeseriesParams(name) {
+    function timeseriesParamsFn(name) {
       return {
         strokeStyle: chartLegend[name],
         lineWidth: 2
