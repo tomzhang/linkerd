@@ -16,7 +16,7 @@ var SuccessRateGraph = (function() {
     }
   }
 
-  function chartWidthFn($chartEl) {
+  function chartWidthFn() {
     var serverWidth = $(".router-server").width();
     if (serverWidth < defaultWidth) {
       return serverWidth;
